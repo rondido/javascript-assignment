@@ -1,7 +1,6 @@
 // do something!
 
 const main = {
-  // 캡슐화 같은 개념이다..
   init: function () {
     const nav = document.querySelector("nav");
     const togglebtn = document.querySelector(".toggle");
