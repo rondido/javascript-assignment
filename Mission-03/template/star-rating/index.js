@@ -15,19 +15,20 @@ const StarRating = ($container) => {
 
   $container.appendChild(newNode);
   $container.className = "star-rating star-rating-container";
-
-  const mouse = document.querySelector(".bx");
-
-  mouse.addEventListener("mouseover", (event) => {
-    for (let i = 0; i < maxRating; i++) {
+  const mouse = document.getElementsByClassName(".bx");
+  //queryselector를 사용하면 무조건 하나만 찾아온다.
+  // const i_length = document.getElementsByClassName("bx");
+  //하나만적용된다? 왜???? 하나만적용될까?
+  document
+    .querySelector(".star-rating-container")
+    .addEventListener("mouseover", (e) => {
       mouse.classList.add("hovered");
-    }
-  });
+    });
 
-  mouse.addEventListener("mouseout", (event) => {
+  document.querySelector(".bx").addEventListener("mouseout", (e) => {
     mouse.classList.remove("hovered");
   });
-  mouse.addEventListener("click", (event) => {
+  document.querySelector(".bx").addEventListener("click", (e) => {
     mouse.classList.add("selected");
   });
 };
