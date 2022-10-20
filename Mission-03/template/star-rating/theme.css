@@ -10,7 +10,6 @@
   font-size: 50px;
   color: var(--main-color);
   cursor: pointer;
-  background-color: blue;
 }
 .star-rating-container > i.hovered {
   color: var(--hovered-color);
