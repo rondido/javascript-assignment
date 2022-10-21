@@ -6,7 +6,6 @@ const StarRating = ($container) => {
   document.getElementsByTagName("head")[0].appendChild(link);
 
   $container.className = "star-rating star-rating-container";
-
   const maxRating = $container.dataset.maxRating;
   $container.innerHTML += new Array(Number(maxRating))
     .fill(0)
@@ -16,7 +15,7 @@ const StarRating = ($container) => {
   const $containerChildren = Object.entries($container.children).map(
     (i) => i[1]
   );
-  const rating = new starRating();
+  const countRating = new starRating();
 
   addEvent("mouseover", addEventMethod, "hovered");
   addEvent("click", addEventMethod, "selected");
@@ -36,9 +35,18 @@ const StarRating = ($container) => {
         return;
       }
       $item.classList.remove(payload.name);
+
+      const detail_index = Number(index);
+
+      $container.dispatchEvent(
+        new CustomEvent("rating-change", {
+          detail: {
+            detail_index,
+          },
+        })
+      );
     });
   }
-
   $container.addEventListener("mouseleave", () =>
     $containerChildren.forEach(($item) => $item.classList.remove("hovered"))
   );
