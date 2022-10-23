@@ -32,22 +32,21 @@ const StarRating = ($container) => {
     $containerChildren.forEach(($item, index) => {
       if (payload.index >= index) {
         $item.classList.add(payload.name);
+        if (event.type === "click") {
+          $container.dispatchEvent(
+            new CustomEvent("rating-change", {
+              detail: index + 1,
+            })
+          );
+        }
         return;
       }
       $item.classList.remove(payload.name);
-
-      const detail_index = Number(index);
-
-      $container.dispatchEvent(
-        new CustomEvent("rating-change", {
-          detail: {
-            detail_index,
-          },
-        })
-      );
     });
   }
-  $container.addEventListener("mouseleave", () =>
+  $container.addEventListener(
+    "mouseleave",
+    () => console.log("현재상태3"),
     $containerChildren.forEach(($item) => $item.classList.remove("hovered"))
   );
 };
