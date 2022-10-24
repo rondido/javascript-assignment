@@ -44,9 +44,7 @@ const StarRating = ($container) => {
       $item.classList.remove(payload.name);
     });
   }
-  $container.addEventListener(
-    "mouseleave",
-    () => console.log("현재상태3"),
+  $container.addEventListener("mouseleave", () =>
     $containerChildren.forEach(($item) => $item.classList.remove("hovered"))
   );
 };
