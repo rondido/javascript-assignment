@@ -80,3 +80,24 @@
 }
 
 
+
+.other{
+    opacity: 0.3;
+}
+
+.today{
+    position: relative;
+    
+}
+
+.today{
+    top: 50%;
+    left:50%;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    display: block;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    border: 1px solid red;
+}
