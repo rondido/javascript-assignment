@@ -6,7 +6,15 @@
 }
 
 .calender{
-    width: 370px;
+    width: 250px;
+    display: none;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 50;
+}
+
+.draw{
+    display: block;
 }
 
 .calendar-nav{
@@ -15,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 370px;
+    width: 250px;
     height: 50px;
     border-radius: 3px;
 
@@ -28,7 +36,7 @@
 
 .calendar-grid{
     
-    width: 370px;
+    width: 250px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
@@ -100,4 +108,8 @@
     transform: translate(-50%,-50%);
     border-radius: 50%;
     border: 1px solid red;
+}
+
+body{
+    background-color: gray;
 }

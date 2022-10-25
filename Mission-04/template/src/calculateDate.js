@@ -13,7 +13,6 @@ function useCalculateDate(date) {
 
     const prevMonth = new Date(getYear, getMonth, 0);
     const thisMonth = new Date(getYear, getMonth + 1, 0);
-
     const pmDate = prevMonth.getDate();
     const pmDay = prevMonth.getDay();
 
@@ -23,7 +22,6 @@ function useCalculateDate(date) {
     const prevDates = [];
     const thisDates = [...Array(nmDate + 1).keys()].slice(1);
     const nextDates = [];
-    const dates = prevDates.concat(thisDates, nextDates);
 
     if (pmDay !== 6) {
       for (let i = 0; i < pmDay + 1; i++) {
@@ -34,13 +32,22 @@ function useCalculateDate(date) {
     for (let i = 1; i < 7 - nmDay; i++) {
       nextDates.push(i);
     }
+
     return {
       prevDates,
       nextDates,
       thisDates,
       toDay,
-      dates,
     };
+  }
+
+  function getToday() {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return year + "-" + month + "-" + day;
   }
 
   const getAllDay = () => {
@@ -57,12 +64,14 @@ function useCalculateDate(date) {
     const { toDay } = get(date);
     return `${toDay.year} ${toDay.month}`;
   };
+  const todayClick = () => {};
 
   return {
     getAllDay,
     getHeader,
     plusMonthByOne,
     minusMonthByOne,
+    getToday,
   };
 }
 
