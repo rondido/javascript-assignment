@@ -29,10 +29,10 @@ function useCalendar(date) {
   });
   calendarBody.addEventListener("click", function (e) {
     e.target.classList.add("day");
-    console.log();
-    // if (e.target.classList.contains("day")) {
-
-    // }
+    calendar_header.classList.remove("draw");
+  });
+  calendarBody.addEventListener("mouseup", function (e) {
+    e.target.classList.add("write");
   });
 
   // eventText.addEventListener("click", function () {

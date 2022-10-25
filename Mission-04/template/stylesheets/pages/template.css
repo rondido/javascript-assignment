@@ -87,7 +87,9 @@
     justify-content: space-around;
 }
 
-
+.write{
+    background-color: green;
+}
 
 .other{
     opacity: 0.3;
@@ -107,8 +109,9 @@
     display: block;
     transform: translate(-50%,-50%);
     border-radius: 50%;
-    border: 1px solid red;
+    border: 1px solid green;
 }
+
 
 body{
     background-color: gray;
