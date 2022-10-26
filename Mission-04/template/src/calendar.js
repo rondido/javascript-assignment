@@ -1,7 +1,7 @@
 import useCalculateDate from "./calculateDate.js";
 
 function useCalendar(date) {
-  const { getAllDay, getHeader, plusMonthByOne, minusMonthByOne, getToday } =
+  const { getAllDay, getHeader, plusMonthByOne, minusMonthByOne, todayClick,pmDate } =
     useCalculateDate(date);
 
   const calendarHeader = document.querySelector(".header");
@@ -11,8 +11,8 @@ function useCalendar(date) {
   const nextDiv = document.querySelector(".nextMonth");
   const eventText = document.querySelector(".text");
   const calendar_header = document.querySelector(".calender");
-
   const toFullDay = new Date();
+  
 
   nextDiv.addEventListener("click", function () {
     plusMonthByOne();
@@ -31,8 +31,7 @@ function useCalendar(date) {
     e.target.classList.add("day");
     calendar_header.classList.remove("draw");
   });
-  calendarBody.addEventListener("mouseup", function (e) {
-    e.target.classList.add("write");
+  calendarBody.addEventListener("click", function (e) {
   });
 
   // eventText.addEventListener("click", function () {
@@ -49,17 +48,24 @@ function useCalendar(date) {
     calendarHeader.textContent = getHeader();
     calendarBody.innerHTML = getAllDay()
       .map((value, i) => {
+        let prevflag = true;
+        let nextflag = false;
         const getYear = date.getFullYear();
         const getMonth = date.getMonth();
         const thisMonth = new Date(getYear, getMonth + 1, 0);
         const nmDate = thisMonth.getDate();
-        const obj = new Date();
+
+        if(pmDate == value){
+          console.log(
+            123
+          )
+        }
         const condition =
           i >= getAllDay().indexOf(1) && i < getAllDay().lastIndexOf(nmDate) + 1
-            ? "this"
+            ? "this" 
             : "other";
 
-        return `<div class='dates'><span class=${condition}>${value}</span></div>`;
+        return `<div class='dates'><span class='spanday ${condition}' >${value}</span></div>`;
       })
       .join("");
 
@@ -74,7 +80,25 @@ function useCalendar(date) {
         }
       }
     }
+    const dates = document.querySelectorAll(".dates");
+  
+    for(let i=0; i< dates.length; i++){
+      let targetday;
+      dates[i].addEventListener("click", function(e){
+        
+        document.querySelector(".clickEvent")?.classList.remove("clickEvent");
+        dates[i].classList.add("clickEvent");
+        if(e.target.innerHTML.length < 2 ){
+          targetday = "0" + e.target.innerHTML;
+        }else{
+          targetday = e.target.innerHTML
+        }
+        eventText.value=todayClick() + targetday;
+      }) 
+
+    }
   };
+  
   render();
 }
 

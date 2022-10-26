@@ -1,28 +1,42 @@
 /**
  * @param {Date} date
  */
+
 function useCalculateDate(date) {
   function get(date) {
     const getYear = date.getFullYear();
     const getMonth = date.getMonth();
 
+    // 캘린더 위에 있는 년 월
     const toDay = {
       year: date.getFullYear(),
       month: date.toLocaleString("en-US", { month: "short" }),
     };
 
-    const prevMonth = new Date(getYear, getMonth, 0);
-    const thisMonth = new Date(getYear, getMonth + 1, 0);
+    // 현재 클릭한 날짜
+    const clickDay = {
+      year: date.getFullYear(),
+      
+      month: date.getMonth() + 1
+      
+    }
+    const prevMonth = new Date(getYear, getMonth, 0); //이전달
+    const thisMonth = new Date(getYear, getMonth + 1, 0); // 현재 년월일
+ 
+      
     const pmDate = prevMonth.getDate();
     const pmDay = prevMonth.getDay();
-
+    const nmYear = thisMonth.getFullYear();
+    const nmMonth = thisMonth.getMonth();
     const nmDate = thisMonth.getDate();
     const nmDay = thisMonth.getDay();
-
+    
     const prevDates = [];
-    const thisDates = [...Array(nmDate + 1).keys()].slice(1);
+    const thisDates = [...Array(nmDate + 1).keys()].slice(1); //일만 가져옴
     const nextDates = [];
-
+   
+    
+ 
     if (pmDay !== 6) {
       for (let i = 0; i < pmDay + 1; i++) {
         prevDates.unshift(pmDate - i);
@@ -38,22 +52,17 @@ function useCalculateDate(date) {
       nextDates,
       thisDates,
       toDay,
+      clickDay,
+      pmDate
     };
   }
-
-  function getToday() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
-
-    return year + "-" + month + "-" + day;
-  }
+  
 
   const getAllDay = () => {
     const { prevDates, thisDates, nextDates } = get(date);
     return prevDates.concat(thisDates, nextDates);
   };
+
   const minusMonthByOne = () => {
     date.setMonth(date.getMonth() - 1);
   };
@@ -64,14 +73,21 @@ function useCalculateDate(date) {
     const { toDay } = get(date);
     return `${toDay.year} ${toDay.month}`;
   };
-  const todayClick = () => {};
+
+  const todayClick = () => {
+    const {clickDay} = get(date);
+    if(clickDay.month <10){
+      clickDay.month = "0" + clickDay.month
+    }
+    return `${clickDay.year}-${clickDay.month}-`
+  };
 
   return {
     getAllDay,
     getHeader,
     plusMonthByOne,
     minusMonthByOne,
-    getToday,
+    todayClick
   };
 }
 

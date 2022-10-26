@@ -87,9 +87,9 @@
     justify-content: space-around;
 }
 
-.write{
+/* .write{
     background-color: green;
-}
+} */
 
 .other{
     opacity: 0.3;
@@ -115,4 +115,18 @@
 
 body{
     background-color: gray;
+}
+
+
+.dates:hover{
+    
+    border-radius: 50%;
+    background-color: green;
+}
+
+.clickEvent{
+    width: 100%;
+    border-radius: 50%;
+    background-color: green;
+
 }
