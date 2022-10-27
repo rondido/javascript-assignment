@@ -20,6 +20,14 @@ function useCalculateDate(date) {
       month: date.getMonth() + 1
       
     }
+    const clickPrevDay = {
+      year: date.getFullYear(),
+      month : date.getMonth()
+    }
+    const clickNextDay = {
+      year: date.getFullYear(),
+      month : date.getMonth() + 2
+    }
     const prevMonth = new Date(getYear, getMonth, 0); //이전달
     const thisMonth = new Date(getYear, getMonth + 1, 0); // 현재 년월일
  
@@ -36,10 +44,9 @@ function useCalculateDate(date) {
     const nextDates = [];
    
     
- 
     if (pmDay !== 6) {
       for (let i = 0; i < pmDay + 1; i++) {
-        prevDates.unshift(pmDate - i);
+        prevDates.unshift(pmDate - i) ;
       }
     }
 
@@ -53,7 +60,11 @@ function useCalculateDate(date) {
       thisDates,
       toDay,
       clickDay,
-      pmDate
+      pmDate,
+      thisMonth,
+      nmDate,
+      clickPrevDay,
+      clickNextDay
     };
   }
   
@@ -73,7 +84,7 @@ function useCalculateDate(date) {
     const { toDay } = get(date);
     return `${toDay.year} ${toDay.month}`;
   };
-
+ //현재 달 클릭
   const todayClick = () => {
     const {clickDay} = get(date);
     if(clickDay.month <10){
@@ -81,13 +92,32 @@ function useCalculateDate(date) {
     }
     return `${clickDay.year}-${clickDay.month}-`
   };
+  const clickPrevDay = () =>{
+    const {clickPrevDay} = get(date);
+    if(clickPrevDay.month <10){
+      clickPrevDay.month = "0" + clickPrevDay.month
+    }
+    return `${clickPrevDay.year}-${clickPrevDay.month}-`
+  };
+
+  const clickNextDay = () =>{
+    const {clickNextDay} = get(date);
+    if(clickNextDay.month <10){
+      clickNextDay.month = "0" + clickNextDay.month
+    }
+    return `${clickNextDay.year}-${clickNextDay.month}-`
+  };
+  
+  
 
   return {
     getAllDay,
     getHeader,
     plusMonthByOne,
     minusMonthByOne,
-    todayClick
+    todayClick,
+    clickPrevDay,
+    clickNextDay
   };
 }
 
