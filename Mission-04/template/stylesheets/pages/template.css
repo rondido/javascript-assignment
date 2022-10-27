@@ -6,11 +6,13 @@
 }
 
 .calender{
-    width: 250px;
+    width: var(--calender-size);
     display: none;
-    z-index: 1;
+    z-index: 10;
     background-color: #fff;
-    box-shadow: 50;
+    box-shadow: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
 .draw{
@@ -23,12 +25,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 250px;
+    width: var(--calender-size);
     height: 50px;
     border-radius: 3px;
-
-
 }
+
 .header{
     display: flex;
 }
@@ -36,7 +37,7 @@
 
 .calendar-grid{
     
-    width: 250px;
+    width: var(--calender-size);
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
@@ -114,7 +115,7 @@
 
 
 body{
-    background-color: gray;
+    background-color: #dcdcdc;
 }
 
 
@@ -129,4 +130,12 @@ body{
     border-radius: 50%;
     background-color: green;
 
+}
+
+
+@media screen and (min-width:500px){
+    :root{
+        --calender-size:300px;
+    }
+    
 }
