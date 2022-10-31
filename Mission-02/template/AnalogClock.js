@@ -1,7 +1,7 @@
 const AnalogClock = ($container) => {
   // do something!
   // 부모
-
+  console.log($container);
   const hour = document.createElement("div");
   const minute = document.createElement("div");
   const second = document.createElement("div");

@@ -1,30 +1,30 @@
 // do something!
 //카테고리별
-function Nav(category) {
-  const root = document.querySelector("#root");
-  const nav = document.createElement("nav");
-  nav.classList.add("category-list");
-  root.append(nav);
-  const categoryList = document.querySelector(".category-list");
-  const ul = document.createElement("ul");
-  categoryList.append(ul);
+function Nav($root, state, $nav) {
+  const $ul = document.createElement("ul");
+  // 객체의 키와 값을 담은 배열을 반환
+  const category = Object.entries(state);
+  //객체의 키값과 요소 값을 가져옴
+  category.forEach(([key, value]) => {
+    $ul.appendChild(Category({ state: value }));
+  });
 
-  function category(e){
-    console.log(e.target.id); 
-  }
-  
-  ul.addEventListener("click", category);
+  $nav.appendChild($ul);
+}
 
-
-  
-  ul.innerHTML =`
-  <li class="category-item" id="all">전체보기</li>
-  <li class="category-item" id="business">비지니스</li>
-  <li class="category-item" id="entertainment">엔터테이먼트</li>
-  <li class="category-item" id="health">건강</li>
-  <li class="category-item" id="science">과학</li>
-  <li class="category-item" id="sports">스포츠</li>
-  <li class="category-item" id="technology">기술</li>  
-  `;
+function Category(state) {
+  const title = state;
+  const $li = document.createElement("li");
+  $li.classList.add("category-item");
+  $li.id = title.state.id;
+  $li.innerHTML = title.state.title;
+  $li.addEventListener("click", function (e) {
+    const active = document.querySelectorAll(".active");
+    if (active !== null) {
+      $li.classList.remove("active");
+    }
+    $li.classList.add("active");
+  });
+  return $li;
 }
 export default Nav;

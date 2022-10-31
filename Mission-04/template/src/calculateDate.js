@@ -1,7 +1,3 @@
-/**
- * @param {Date} date
- */
-
 function useCalculateDate(date) {
   function get(date) {
     const getYear = date.getFullYear();
@@ -16,37 +12,34 @@ function useCalculateDate(date) {
     // 현재 클릭한 날짜
     const clickDay = {
       year: date.getFullYear(),
-      
-      month: date.getMonth() + 1
-      
-    }
+
+      month: date.getMonth() + 1,
+    };
     const clickPrevDay = {
       year: date.getFullYear(),
-      month : date.getMonth()
-    }
+      month: date.getMonth(),
+    };
     const clickNextDay = {
       year: date.getFullYear(),
-      month : date.getMonth() + 2
-    }
+      month: date.getMonth() + 2,
+    };
     const prevMonth = new Date(getYear, getMonth, 0); //이전달
     const thisMonth = new Date(getYear, getMonth + 1, 0); // 현재 년월일
- 
-      
+
     const pmDate = prevMonth.getDate();
     const pmDay = prevMonth.getDay();
     const nmYear = thisMonth.getFullYear();
     const nmMonth = thisMonth.getMonth();
     const nmDate = thisMonth.getDate();
     const nmDay = thisMonth.getDay();
-    
+
     const prevDates = [];
     const thisDates = [...Array(nmDate + 1).keys()].slice(1); //일만 가져옴
     const nextDates = [];
-   
-    
+
     if (pmDay !== 6) {
       for (let i = 0; i < pmDay + 1; i++) {
-        prevDates.unshift(pmDate - i) ;
+        prevDates.unshift(pmDate - i);
       }
     }
 
@@ -64,10 +57,9 @@ function useCalculateDate(date) {
       thisMonth,
       nmDate,
       clickPrevDay,
-      clickNextDay
+      clickNextDay,
     };
   }
-  
 
   const getAllDay = () => {
     const { prevDates, thisDates, nextDates } = get(date);
@@ -84,31 +76,29 @@ function useCalculateDate(date) {
     const { toDay } = get(date);
     return `${toDay.year} ${toDay.month}`;
   };
- //현재 달 클릭
+  //현재 달 클릭
   const todayClick = () => {
-    const {clickDay} = get(date);
-    if(clickDay.month <10){
-      clickDay.month = "0" + clickDay.month
+    const { clickDay } = get(date);
+    if (clickDay.month < 10) {
+      clickDay.month = "0" + clickDay.month;
     }
-    return `${clickDay.year}-${clickDay.month}-`
+    return `${clickDay.year}-${clickDay.month}-`;
   };
-  const clickPrevDay = () =>{
-    const {clickPrevDay} = get(date);
-    if(clickPrevDay.month <10){
-      clickPrevDay.month = "0" + clickPrevDay.month
+  const clickPrevDay = () => {
+    const { clickPrevDay } = get(date);
+    if (clickPrevDay.month < 10) {
+      clickPrevDay.month = "0" + clickPrevDay.month;
     }
-    return `${clickPrevDay.year}-${clickPrevDay.month}-`
+    return `${clickPrevDay.year}-${clickPrevDay.month}-`;
   };
 
-  const clickNextDay = () =>{
-    const {clickNextDay} = get(date);
-    if(clickNextDay.month <10){
-      clickNextDay.month = "0" + clickNextDay.month
+  const clickNextDay = () => {
+    const { clickNextDay } = get(date);
+    if (clickNextDay.month < 10) {
+      clickNextDay.month = "0" + clickNextDay.month;
     }
-    return `${clickNextDay.year}-${clickNextDay.month}-`
+    return `${clickNextDay.year}-${clickNextDay.month}-`;
   };
-  
-  
 
   return {
     getAllDay,
@@ -117,7 +107,7 @@ function useCalculateDate(date) {
     minusMonthByOne,
     todayClick,
     clickPrevDay,
-    clickNextDay
+    clickNextDay,
   };
 }
 
