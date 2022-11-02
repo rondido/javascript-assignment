@@ -28,3 +28,5 @@ click -> state -> api 별로 떙겨서 넘겨준다?
 현재 카테고리 클릭 시 -> active class 생성
 
 그리고 observer patten구현
+
+nav 클릭 시 -> 카테고리를 전역으로 전달 -> 전역에서 다시 newsList로 전달
