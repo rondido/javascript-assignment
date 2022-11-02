@@ -17,7 +17,14 @@ function App() {
       technology: { id: "technology", title: "기술" },
     },
     {
-      set: function (target, prop, value) {},
+      set: function (target, prop, value) {
+        return Reflect.target;
+      },
+    },
+    {
+      get: function(target,prop){
+        return target;
+      }
     }
   );
 
