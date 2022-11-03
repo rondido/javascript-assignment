@@ -30,3 +30,9 @@ click -> state -> api 별로 떙겨서 넘겨준다?
 그리고 observer patten구현
 
 nav 클릭 시 -> 카테고리를 전역으로 전달 -> 전역에서 다시 newsList로 전달
+
+App.js 전역상태 관리하고
+
+nav - > 클릭하면 전역으로 보내고 전역에서다시 newList보내서 api호출해서 보여줌
+
+처음일때 아이디랑 두번쨰 아이디 같은지 확인
