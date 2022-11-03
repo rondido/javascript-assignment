@@ -6,32 +6,32 @@ import NewList from "./components/NewsList.js";
 function App() {
   //전역 상태
   //observable
-  const state = new Proxy(
-    {
-      all: { id: "all", title: "전체보기" },
-      business: { id: "business", title: "비지니스" },
-      entertainment: { id: "entertainment", title: "엔터테이먼트" },
-      health: { id: "health", title: "건강" },
-      science: { id: "science", title: "과학" },
-      sports: { id: "sports", title: "스포츠" },
-      technology: { id: "technology", title: "기술" },
-    },
-    {
-      set: function (target, prop, value) {
-        return Reflect.target;
+  const initialState = new Nav(
+    new Proxy(
+      {
+        all: { id: "all", title: "전체보기" },
+        business: { id: "business", title: "비지니스" },
+        entertainment: { id: "entertainment", title: "엔터테이먼트" },
+        health: { id: "health", title: "건강" },
+        science: { id: "science", title: "과학" },
+        sports: { id: "sports", title: "스포츠" },
+        technology: { id: "technology", title: "기술" },
       },
-    },
-    {
-      get: function(target,prop){
-        return target;
+      {
+        seletedClick: null,
+      },
+      {
+        set: function (target, prop, value) {
+          return Reflect.target;
+        },
+      },
+      {
+        get: function (target, prop) {
+          return target;
+        },
       }
-    }
+    )
   );
-
-  const $root = document.querySelector("#root");
-  const $nav = document.createElement("nav");
-  $nav.classList.add("category-list");
-  $root.appendChild($nav);
 
   const pageSize = 5;
   const category = "technology";
@@ -52,9 +52,9 @@ function App() {
         return error;
       });
   };
-  Nav($root, state, $nav);
-  NewList(news);
-  return { $root, state, $nav };
+  //Nav($nav);
+  // NewList(news);
+  // return { $root, initialState, $nav };
 }
 
 App();
