@@ -32,38 +32,27 @@ export default function Nav(initialState, onClick) {
 
   this.render();
 
-  const $li = document.querySelectorAll("li");
-  console.log(this.state.handler);
-  $li.forEach((value) => {
-    value.addEventListener("click", function (e) {
-      const target = e.target.closest(".category-item");
-      this.state.seletedClick = e.target.id;
-      if (target) {
-        const { targetId } = e.target.id;
-        target.classList.add("active");
-        if (!targetId) {
-          //this.render();
-          return;
-        }
-        const selected = category.find((node) => node.id == targetId);
-        console.log(selected);
-        if (selected) {
-          this.onClick(selected);
-        }
+  //이벤트 위임?
+  document
+    .querySelector(".category-list")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      e.target.classList.add("active");
+      if (e.target.classList.contains("active")) {
+        console.log(123);
+        const id = e.target.getAttribute("id");
+        const active = document.querySelector("active");
+        console.log(id);
+        console.log(e.target.id);
+        //   if (e.target.classList.contains("active")) {
+        //     e.target.classList.add("active");
+        //   }else{
+
+        //   }
+        //   if (id === e.target.classList.contains("active")) {
+        //     console.log(123);
+        //   }
+        //   console.log(e.target.classList.contains("active"));
       }
     });
-  });
-
-  // // 객체의 키와 값을 담은 배열을 반환
-  // const category = Object.entries(this.state);
-
-  // category.forEach(([key, value]) => {
-  //   navList.push(
-  //     `
-  //       <li class="category-item" id="${value.id}">${value.title}</li>
-  //     `
-  //   );
-  // });
-  // $ul.innerHTML = navList.join("");
-  // $nav.appendChild($ul);
 }
