@@ -1,6 +1,7 @@
 // do something!
 // 뉴스리스트 나오는곳
 function NewList(news) {
+
   const $root_div = document.querySelector("#root");
   const $div = document.createElement("div");
   const $article = document.createElement("article");
