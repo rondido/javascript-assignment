@@ -33,27 +33,8 @@ function App() {
   $nav.classList.add("category-list");
   $root.appendChild($nav);
 
-  const pageSize = 5;
-  const category = "technology";
-  const page = 5;
-  const apiKey = "daca2ab1ed1f4d9f8b4cd5e05a92a669";
-  const url = `https://newsapi.org/v2/top-headlines?country=kr&category=${
-    category === "all" ? "" : category
-  }&page=${page}&pageSize=${pageSize}&apiKey=${apiKey}`;
-  const news = async () => {
-    await axios
-      .get(url)
-      .then((response) => {
-        console.log(response);
-        return response;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      });
-  };
   Nav($root, state, $nav);
-  NewList(news);
+  NewList();
   return { $root, state, $nav };
 }
 
