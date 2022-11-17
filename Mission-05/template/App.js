@@ -4,8 +4,8 @@ import Nav from "./components/Nav.js";
 import NewList from "./components/NewsList.js";
 
 function App() {
-  //전역 상태
-  //observable
+  // //observable
+
   const state = new Proxy(
     {
       all: { id: "all", title: "전체보기" },
@@ -22,20 +22,18 @@ function App() {
       },
     },
     {
-      get: function(target,prop){
+      get: function (target, prop) {
         return target;
-      }
+      },
     }
   );
-
   const $root = document.querySelector("#root");
   const $nav = document.createElement("nav");
   $nav.classList.add("category-list");
   $root.appendChild($nav);
-
-  Nav($root, state, $nav);
+  Nav($root, $nav, state);
   NewList();
-  return { $root, state, $nav };
+  return { $root, $nav, state };
 }
 
 App();
