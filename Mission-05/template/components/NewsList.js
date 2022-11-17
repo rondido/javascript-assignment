@@ -75,6 +75,7 @@ function NewList() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         loadPost();
+        page++;
       }
     });
   }, options);
